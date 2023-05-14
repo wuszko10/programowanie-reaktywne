@@ -1,11 +1,16 @@
+import { Outlet } from 'react-router-dom';
 import './App.css';
+import Navbar from './components/navbar';
 import Posts from "./components/posts";
 
 function App() {
   return (
-    <main className="container">
-      <Posts/>
-    </main>
+    <div className='container-fluid'>
+      <Navbar />
+      <div className='container'>
+        <Outlet />
+      </div>
+    </div>
   );
 }
 
