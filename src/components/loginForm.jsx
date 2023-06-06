@@ -14,7 +14,7 @@ class LoginForm extends Component {
     validate = () => {
         const errors = {};
 
-        const { account } = this.state;
+        const {account} = this.state;
         if (account.username.trim() === '') {
             errors.username = 'Username is required!';
         }
@@ -25,8 +25,6 @@ class LoginForm extends Component {
         return Object.keys(errors).length === 0 ? null : errors;
     };
 
-
-
     handleSubmit = (event) => {
         event.preventDefault();
 
@@ -36,7 +34,7 @@ class LoginForm extends Component {
 
         axios({
             method: 'post',
-            url: 'http://localhost:3001/api/user/auth',
+            url: 'http://localhost:3000/api/user/auth',
             data: {
                 login: this.state.account.username,
                 password: this.state.account.password
@@ -49,7 +47,6 @@ class LoginForm extends Component {
             this.setState({errors: errors || {}});
             console.log(error);
         });
-
     };
 
     handleChange = (event) => {
@@ -92,7 +89,6 @@ class LoginForm extends Component {
                 </form>
 
             </div>
-
         );
     }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -11,6 +11,8 @@ import Posts from './components/posts';
 import Home from './components/home';
 import NotFound from './components/notFound';
 import LoginForm from "./components/loginForm";
+import SignUpForm from "./components/signUp";
+import {isExpired} from "react-jwt";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,8 +20,9 @@ ReactDOM.render(
       <Routes>
         <Route path='/' element={<App />}>
           <Route path="home" element={<Home />} />
-          <Route path="posts" element={<Posts />} />
+          <Route path="posts" element={isExpired(localStorage.getItem('token')) ? <Navigate replace to="/home"/> : <Posts/>}/>
           <Route path="login" element={<LoginForm />} />
+          <Route path="signUp" element={<SignUpForm/>} />
           <Route
             path="*"
             element={
